@@ -34,21 +34,6 @@ public class OrderItem {
         this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
 
     public int getOrderPrice() {
         return orderPrice;
