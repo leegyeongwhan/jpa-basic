@@ -1,19 +1,20 @@
 package jpabook.jpashop.domain;
 
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn
-public  abstract class Item {
-
-    @Id@GeneratedValue
+public class Product {
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
-    private int price;
+
+    @OneToMany(mappedBy = "product")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -29,13 +30,5 @@ public  abstract class Item {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 }

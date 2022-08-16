@@ -1,23 +1,26 @@
 package jpabook.jpashop.domain;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member {
-
+public class Member extends BaseEntity{
     @Id
     @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;
-    private String name;
-    private String city;
-    private String street;
-    private String zipcode;
+
+    @Column(name = "USERNAME")
+    private String username;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
 
     @OneToMany(mappedBy = "member")
-    private List<Order> orders = new ArrayList<>();
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -27,36 +30,14 @@ public class Member {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getCity() {
-        return city;
-    }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
+    //Getter, Setter…
 }

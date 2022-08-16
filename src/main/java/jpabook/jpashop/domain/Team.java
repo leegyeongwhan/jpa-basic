@@ -1,19 +1,21 @@
 package jpabook.jpashop.domain;
 
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn
-public  abstract class Item {
+public class Team extends BaseEntity {
 
-    @Id@GeneratedValue
+    @Id
+    @GeneratedValue
+    @Column(name = "TEAM_ID")
     private Long id;
-
     private String name;
-    private int price;
+
+    @OneToMany
+    private List<Member> members = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -31,11 +33,11 @@ public  abstract class Item {
         this.name = name;
     }
 
-    public int getPrice() {
-        return price;
+    public List<Member> getMembers() {
+        return members;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setMembers(List<Member> members) {
+        this.members = members;
     }
 }
