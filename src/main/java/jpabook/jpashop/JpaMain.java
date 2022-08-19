@@ -1,5 +1,6 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Book;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Movie;
 
@@ -18,11 +19,11 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setUsername("user1");
-            member.setCreteBy("kim");
-            member.setCreatedDate(LocalDateTime.now());
-            em.persist(member);
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김연한");
+
+            em.persist(book);
 
             em.flush();
             em.clear();
@@ -31,7 +32,8 @@ public class JpaMain {
             tx.rollback();
         } finally {
             em.close();
+            emf.close();
+
         }
-        emf.close();
     }
 }
